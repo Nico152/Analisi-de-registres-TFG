@@ -1,0 +1,29 @@
+{% extends 'tfg/base.html' %}
+{% load render_table from django_tables2 %}
+{% load static %}
+
+{% block sidebar %}
+<div class = 'SideBar'>
+	<h3 style = "color:white;padding: 0px 8px"> Consultes </h3>
+	  <a href="/tfg/cerca-protagonista/">Protagonisme a esdeveniments</a>
+	  <a href="/tfg/cerca-participant/"> Participacions a esdeveniments</a>
+	  <a href="/tfg/vida/">Vida</a>
+</div>
+{% endblock %}
+
+
+{% block content %}
+<div style = "padding: 10px 5px 10px 10px">
+	<p> Per trobar les participacions a un esdeveniment, cerca la persona introduïnt les següents dades:</p>
+	<form action= "/tfg/cerca-participant/" method = "post" novalidate>
+		{% csrf_token %}
+		{{ form }}
+		<button type="submit">Cerca</button>
+</div>
+<div>
+		{% render_table participant %}
+</div>
+{% endblock %}
+</div>
+</body>
+</html>

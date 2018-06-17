@@ -1,0 +1,28 @@
+{% extends 'tfg/base.html' %}
+{% load render_table from django_tables2 %}
+{% load static %}
+
+{% block sidebar %}
+<div class = 'SideBar'>
+	<h3 style = "color:white;padding: 0px 8px"> Consultes </h3>
+	  <a href="/tfg/Baptismes/">Cercar Batejats</a>
+	  <a href="/tfg/Baptismes/cerca-apadrinats/"> Padrins i Fillols</a>
+	  <a href="#">Link 3</a>
+</div>
+{% endblock %}
+
+{% block content %}
+<div style = "padding: 10px 5px 10px 10px">
+	<p> Cerca el padrí/na introduïnt les seves dades:</p>
+	<form action= "/tfg/Baptismes/cerca-apadrinats/" method = "post" novalidate>
+		{% csrf_token %}
+		{{ form }}
+		<button type="submit">Cerca</button>
+</div>
+<div>
+	<p style = "padding: 10px 5px 10px 10px;text-decoration: underline;color:purple;font-size:20px"> Participacions com a Padrí/na </p>
+		{% render_table participacions %}
+	<p style = "padding: 10px 5px 10px 10px;text-decoration: underline;color:purple;font-size:20px"> Baptismes </p>
+		{% render_table baptismes %}
+</div>
+{% endblock %}

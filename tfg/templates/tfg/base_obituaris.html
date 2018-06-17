@@ -1,0 +1,26 @@
+{% extends 'tfg/base.html' %}
+{% load render_table from django_tables2 %}
+{% load static %}
+
+{% block sidebar %}
+<div class = 'SideBar'>
+	<h3 style = "color:white;padding: 0px 8px"> Consultes </h3>
+	  <a href="/tfg/Obituaris/">Cercar Obituaris</a>
+	  <a href="#"> Link 2</a>
+	  <a href="/tfg/Obituaris/statsMortInfants/">Mortalitat Infantil</a>
+</div>
+{% endblock %}
+
+{% block content %}
+<div style = "padding: 10px 5px 10px 10px">
+	<p> Arxius d'obituaris disponibles. Cerca l'obituari introduïnt les dades del difunt:</p>
+	<form action= "/tfg/Obituaris/cerca-obituaris/" method = "post" novalidate>
+		{% csrf_token %}
+		{{ form }}
+		<button type="submit">Cerca</button>
+</div>
+<div>
+	
+		{% render_table obituaris %}
+</div>
+{% endblock %}

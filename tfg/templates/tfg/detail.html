@@ -1,0 +1,11 @@
+{% extends 'tfg/base.html' %}
+{% load render_table from django_tables2 %}
+{% load static %}
+
+{% block content %}
+	<p> Protagonista/es Esdeveniment </p>
+		{% render_table protagonista %}
+	<p> Participants Esdeveniment </p>
+		{% render_table participacions %}
+	<img src="{% static 'images/arbre.png' %}" />
+{% endblock %}

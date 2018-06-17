@@ -1,0 +1,42 @@
+{% extends 'tfg/base.html' %}
+{% load render_table from django_tables2 %}
+{% load static %}
+
+{% block sidebar %}
+<div class = 'SideBar'>
+	<h3 style = "color:white;padding: 0px 8px"> Consultes </h3>
+	  <a href="/tfg/cerca-protagonista/">Protagonisme a esdeveniments</a>
+	  <a href="/tfg/cerca-participant/"> Participacions a esdeveniments</a>
+	  <a href="/tfg/vida/">Vida</a>
+</div>
+{% endblock %}
+
+
+{% block content %}
+<div style = "padding: 10px 5px 10px 10px">
+	<p> Per trobar els esdeveniments durant la vida d'una persona, introdueix les següents dades:</p>
+	<form action= "/tfg/vida/" method = "post" novalidate >
+		{% csrf_token %}
+		{{ form }}
+		<button type="submit">Cerca</button>
+</div>
+<div>
+	{% for persona in vides %}
+	<ul style ="hover{ cursor:pointer;}">
+		{% for key, value in persona.items %}
+			{% if key == "Nom" %}
+				<p style = "padding: 5px 5px 5px 5px;color:purple;font-size:20px"> {{ value }} </p>
+			{% else %}
+				{% for event, arxiu, registre in value %}
+					<li style =" li: hover{ cursor:pointer;}" onclick = "myFunction('{{arxiu}}','{{registre}}')"> {{event}} </li>
+				{% endfor %}
+			{% endif %}
+		{% endfor %}
+		
+	</ul>
+	{% endfor %}
+</div>
+{% endblock %}
+</div>
+</body>
+</html>

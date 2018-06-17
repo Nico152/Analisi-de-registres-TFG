@@ -1,0 +1,35 @@
+{% load render_table from django_tables2 %}
+{% load static %}
+<!DOCTYPE html5>
+<html>
+<head>
+	<title>Analisi Registres de la parròquia d'Agullana</title>
+	<link rel="shortcut icon" href="{%  static 'favicon.ico' %}">
+	<link rel="stylesheet" type="text/css" href= "{% static 'styles.css' %}"/>
+	<link rel="stylesheet" type="text/css" href= "https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"/>
+	<script src="{% static 'prova.js' %}"> </script>
+</head>
+<body>
+<h1>Registres de la parròquia d'Agullana</h1>
+{% block sidebar %}
+<div class = 'SideBar'>
+	<h3 style = "color:white;padding: 0px 8px"> Consultes </h3>
+	  <a href="/tfg/cerca-protagonista/">Protagonisme a esdeveniments</a>
+	  <a href="/tfg/cerca-participant/"> Participacions a esdeveniments</a>
+	  <a href="/tfg/vida/">Vida</a>
+</div>
+{% endblock %}
+<div style= "margin-left:15%;padding: 0px 10px">
+<nav id='NavigationBar'>
+	<a href="/tfg/"> General </a>
+	<a href="/tfg/Baptismes/"> Baptismes </a>
+	<a href="/tfg/Matrimonis/"> Matrimonis </a>
+	<a href="/tfg/Obituaris/"> Obituaris </a>
+</nav>
+{% block content %}
+	<p> Arxius Disponibles</p>
+		{% render_table arxiu %}
+{% endblock %}
+</div>
+</body>
+</html>
